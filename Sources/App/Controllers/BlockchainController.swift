@@ -16,6 +16,12 @@ class BlockchainController {
         self.blockchainService = BlockchainService()
     }
     
+    /* Won't require of Future<Blockchain> because BlockchainService already takes care of
+     returning the Blockchain **/
+    func getBlockchain(req: Request) -> Blockchain {
+        return self.blockchainService.getBlockchain()
+    }
+    
     func greet(req: Request) -> Future<String> {
         return Future.map(on: req) { () -> String in
             return "Welcome to blockchain";
