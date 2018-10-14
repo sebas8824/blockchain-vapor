@@ -22,9 +22,7 @@ class BlockchainController {
         return self.blockchainService.getBlockchain()
     }
     
-    func greet(req: Request) -> Future<String> {
-        return Future.map(on: req) { () -> String in
-            return "Welcome to blockchain";
-        }
+    func mine(req: Request, transaction: Transaction) -> Block {
+        return self.blockchainService.getNextBlock(transactions: [transaction])
     }
 }
