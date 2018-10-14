@@ -8,6 +8,14 @@
 import Cocoa
 import Vapor
 
+final class BlockchainNode: Content {
+    var address: String
+    
+    init(address: String) {
+        self.address = address
+    }
+}
+
 final class Transaction: Content {
     var from : String
     var to : String
@@ -47,10 +55,17 @@ final class Block: Content {
 }
 
 final class Blockchain: Content {
+    
     private (set) var blocks: [Block] = [Block]()
+    private (set) var nodes = [BlockchainNode]()
     
     init(genesisBlock: Block) {
         addBlock(genesisBlock)
+    }
+    
+    func registerNodes(nodes: [BlockchainNode]) -> [BlockchainNode] {
+        self.nodes.append(contentsOf: nodes)
+        return self.nodes
     }
     
     func addBlock(_ block: Block) {

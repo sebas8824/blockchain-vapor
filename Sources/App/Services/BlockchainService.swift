@@ -23,4 +23,12 @@ class BlockchainService {
         self.blockchain.addBlock(block)
         return block
     }
+    
+    func registerNodes(nodes: [BlockchainNode]) -> [BlockchainNode] {
+        return self.blockchain.registerNodes(nodes: nodes)
+    }
+    
+    func getNodes() -> [BlockchainNode] {
+        return self.blockchain.nodes
+    }
 }
