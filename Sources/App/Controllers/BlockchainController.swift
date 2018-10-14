@@ -33,4 +33,13 @@ class BlockchainController {
     func getNodes(req: Request) -> [BlockchainNode] {
         return self.blockchainService.getNodes()
     }
+    
+    func resolve(req: Request) -> Future<Blockchain> {
+        let promise: EventLoopPromise<Blockchain> = req.eventLoop.newPromise()
+        blockchainService.resolve {
+            promise.succeed(result: $0)
+        }
+        
+        return promise.futureResult
+    }
 }

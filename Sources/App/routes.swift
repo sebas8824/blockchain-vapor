@@ -7,4 +7,5 @@ public func routes(_ router: Router) throws {
     router.post(Transaction.self, at: "/api/blockchain/mine", use: blockchainController.mine)
     router.post([BlockchainNode].self, at: "/api/blockchain/nodes/register", use: blockchainController.registerNodes)
     router.get("api/blockchain/nodes", use: blockchainController.getNodes)
+    router.get("api/blockchain/resolve", use: blockchainController.resolve)
 }
