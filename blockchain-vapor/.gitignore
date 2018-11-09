@@ -16,6 +16,7 @@ DerivedData/
 *.perspectivev3
 !default.perspectivev3
 xcuserdata/
+*.gitignore
 
 ## Other
 *.moved-aside
@@ -27,6 +28,9 @@ xcuserdata/
 *.ipa
 *.dSYM.zip
 *.dSYM
+
+# Database
+*.db
 
 ## Playgrounds
 timeline.xctimeline

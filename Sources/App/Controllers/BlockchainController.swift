@@ -11,11 +11,11 @@ import Vapor
 class BlockchainController {
     
     private (set) var blockchainService: BlockchainService
-    private (set) var smartContractService: SmartContractService
+    //private (set) var smartContractService: SmartContractService
     
     init() {
         self.blockchainService = BlockchainService()
-        self.smartContractService = SmartContractService()
+        //self.smartContractService = SmartContractService()
     }
     
     /* Won't require of Future<Blockchain> because BlockchainService already takes care of
@@ -25,9 +25,9 @@ class BlockchainController {
     }
     
     func mine(req: Request, transaction: Transaction) -> Block {
-        if transaction.hasTax {
+        /*if transaction.hasTax {
             transaction.amount = smartContractService.addTax(tax: 0.24, amount: transaction.amount)
-        }        
+        }*/
         return self.blockchainService.getNextBlock(transactions: [transaction])
     }
     
