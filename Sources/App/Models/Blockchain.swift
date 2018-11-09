@@ -7,6 +7,7 @@
 
 import Cocoa
 import Vapor
+import Crypto
 
 final class Blockchain: Content {
     
@@ -23,10 +24,9 @@ final class Blockchain: Content {
     }
     
     func addBlock(_ block: Block) {
-        /* This defines the Genesis block 0000000000 */
         if self.blocks.isEmpty {
             block.previousHash = String(repeating: "0", count: 10)
-            block.hash = generateHash(for: block)
+            block.hash = try? generateHash(for: block)
         }
         self.blocks.append(block)
     }
@@ -41,7 +41,7 @@ final class Blockchain: Content {
         let previousBlock = getPreviousBlock()
         block.index = self.blocks.count
         block.previousHash = previousBlock.hash
-        block.hash = generateHash(for: block)
+        block.hash = try? generateHash(for: block)
         
         return block
     }
@@ -51,37 +51,14 @@ final class Blockchain: Content {
     }
     
     /* This defines the complexity of the transaction hash */
-    func generateHash(for block: Block) -> String {
-        var hash = block.key.sha1Hash()
+    func generateHash(for block: Block) throws -> String  {
+        var hash = try SHA1.hash(block.key).hexEncodedString()
         
-        while(!hash.hasPrefix("0")) {
+        while(!hash.hasPrefix("00")) {
             block.nonce += 1
-            hash = block.key.sha1Hash()
-            print(hash)
+            hash = try SHA1.hash(block.key).hexEncodedString()
         }
         
         return hash
-    }
-}
-
-extension String {
-    func sha1Hash() -> String {
-        let task = Process()
-        
-        task.launchPath = "/usr/bin/shasum"
-        task.arguments = []
-        
-        let inputPipe = Pipe()
-        inputPipe.fileHandleForWriting.write(self.data(using: String.Encoding.utf8)!)
-        inputPipe.fileHandleForWriting.closeFile()
-        
-        let outputPipe = Pipe()
-        task.standardOutput = outputPipe
-        task.standardInput = inputPipe
-        task.launch()
-        
-        let data = outputPipe.fileHandleForReading.readDataToEndOfFile()
-        let hash = String(data: data, encoding: String.Encoding.utf8)!
-        return hash.replacingOccurrences(of: "  -\n", with: "")
     }
 }
