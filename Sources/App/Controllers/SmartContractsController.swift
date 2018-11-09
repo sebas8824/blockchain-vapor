@@ -15,11 +15,14 @@ class SmartContractsController {
         self.smartContractsService = SmartContractService()
     }
     
-    func getSmartContract() {}
+    func getSmartContracts(req: Request) throws -> Future<[SmartContract]> {
+        return try self.smartContractsService.listSmartContracts(req: req)
+    }
     
-    func setSmartContract(req: Request, smartContract: SmartContract) throws -> SmartContract {
-        var smartContract = try req.content.syncDecode(SmartContract.self)
-        
-        return smartContract
+    func setSmartContract(req: Request, smartContract: SmartContract) throws -> Future<SmartContract> {
+        return try self.smartContractsService.persistSmartContract(req: req, smartContract: smartContract)
+    }
+    func getSmartContract(req: Request) throws -> Future<SmartContract> {
+        return try self.smartContractsService.getSmartContract(req: req)
     }
 }

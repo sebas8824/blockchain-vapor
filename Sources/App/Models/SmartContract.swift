@@ -14,9 +14,9 @@ final class SmartContract: Content, SQLiteModel, Migration {
     var id: Int?
     var contractId: String
     var name : String
-    var tax : Double
+    var tax : Float
     
-    init(contractId: String, name: String, tax: Double) {
+    init(contractId: String, name: String, tax: Float) {
         self.contractId = contractId
         self.name = name
         self.tax = tax

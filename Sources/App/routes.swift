@@ -11,6 +11,7 @@ public func routes(_ router: Router) throws {
     router.get("api/blockchain/nodes", use: blockchainController.getNodes)
     router.get("api/blockchain/resolve", use: blockchainController.resolve)
     
-    //router.get("api/smartcontracts/", use: smartContractsController.getSmartContract)
+    router.get("api/smartcontracts/", use: smartContractsController.getSmartContracts)
+    router.get("api/smartcontracts/", String.parameter, use: smartContractsController.getSmartContract)
     router.post(SmartContract.self, at: "api/smartcontracts/", use: smartContractsController.setSmartContract)
 }
