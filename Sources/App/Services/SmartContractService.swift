@@ -26,11 +26,14 @@ class SmartContractService {
     }
     
     func getSmartContract(req: Request) throws -> Future<SmartContract> {
-        let contractID = try req.parameters.next(String.self)
-        let query = try SmartContract.query(on: req).filter(\.contractId == contractID).first()
-
-        return query.flatMap(to: SmartContract.self) { contract in
-            return try req.content.decode(SmartContract.self)
+        let contractID = try req.parameters.next(Int.self)
+        let query = try SmartContract.find(contractID, on: req)
+        
+        return query.map(to: SmartContract.self) { c in
+            guard let contract = c else {
+                throw Abort(.notFound)
+            }
+            return contract
         }
     }
 }
