@@ -35,7 +35,7 @@ class SmartContractService {
         }
     }
     
-    func calculateTransaction(transaction: Int?, req: Request) throws -> Future<Double> {
+    func getContractTaxById(transaction: Int?, req: Request) throws -> Future<Double> {
         guard let contract = transaction else {
             throw Abort(.custom(code: 503, reasonPhrase: "The contract is not registered"))
         }

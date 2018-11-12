@@ -27,7 +27,7 @@ class SmartContractsController {
         return try self.smartContractsService.getSmartContract(req: req)
     }
     
-    func calculateTransaction(transaction: Int?, req: Request) throws -> Future<Double> {
-        return try self.smartContractsService.calculateTransaction(transaction: transaction, req: req)
+    func getContractTaxById(transaction: Int?, req: Request) throws -> Future<Double> {
+        return try self.smartContractsService.getContractTaxById(transaction: transaction, req: req)
     }
 }

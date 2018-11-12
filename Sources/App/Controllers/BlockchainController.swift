@@ -23,7 +23,7 @@ class BlockchainController {
     }
     
     func mine(req: Request, transaction: Transaction) throws -> Future<Block> {
-        return try smartContractService.calculateTransaction(transaction: transaction.contractId, req: req)
+        return try smartContractService.getContractTaxById(transaction: transaction.contractId, req: req)
             .map(to: Block.self) { tx in
                 transaction.amount = transaction.amount + (transaction.amount * tx)
                 return self.blockchainService.getNextBlock(transactions: [transaction])
