@@ -35,7 +35,7 @@ This API registers simple transactions and adds a tax if required.
 
 ## POST
 
-- **/api/blockchain/mine**: Registers transactions under this structure `'{ "from": "Sender", "to": "Reciever", "amount": 1000, "hasTax": true }'` where true or false vary the amount returned after adding the transaction to the chain.
+- **/api/blockchain/mine**: Registers transactions under this structure `'{ "from": "Sender", "to": "Reciever", "amount": 1000, "contractId": 1 }'` where contractId is the Smart Contract that will be used to calculate the tax for the transaction.
 
 - **/api/blockchain/nodes/register**: Register listening nodes by using this request body `'[{"address": "http://localhost:8080"},{"address": "http://localhost:8090"}]'`.
 
@@ -44,10 +44,9 @@ This API registers simple transactions and adds a tax if required.
 
 - Synchronize correctly the blockchain resolution when two nodes have the same amount of transactions but both are different.
 - Add an authentication method for each endpoint
-- Create an endpoint for registering several smart contracts in a database (By using a Fluent provider or a Google cloud function)
-- Create an endpoint to browse the created smart contracts
 - The transactions will send the smart contract and will perform the specified operation.
 
 ## Next level
 
 - Dive deeper by implementing a digital signature model to encrypt the transactions. Should be bound to the user who is doing a transaction.
+- Extend the smart contracts functionality according to the Ethereum specification.
