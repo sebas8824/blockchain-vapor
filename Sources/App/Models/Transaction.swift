@@ -12,12 +12,12 @@ final class Transaction: Content {
     var from : String
     var to : String
     var amount : Double
-    var contract: String
+    var contractId: Int?
     
-    init(from: String, to: String, amount: Double, contract: String) {
+    init(from: String, to: String, amount: Double, contractId: Int?) {
         self.from = from
         self.to = to
         self.amount = amount
-        self.contract = contract
+        self.contractId = contractId
     }
 }

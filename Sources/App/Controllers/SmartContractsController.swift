@@ -22,7 +22,12 @@ class SmartContractsController {
     func setSmartContract(req: Request, smartContract: SmartContract) throws -> Future<SmartContract> {
         return try self.smartContractsService.persistSmartContract(req: req, smartContract: smartContract)
     }
+    
     func getSmartContract(req: Request) throws -> Future<SmartContract> {
         return try self.smartContractsService.getSmartContract(req: req)
+    }
+    
+    func calculateTransaction(transaction: Int?, req: Request) throws -> Future<Double> {
+        return try self.smartContractsService.calculateTransaction(transaction: transaction, req: req)
     }
 }

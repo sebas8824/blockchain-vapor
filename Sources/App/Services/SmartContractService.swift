@@ -30,10 +30,22 @@ class SmartContractService {
         let query = try SmartContract.find(contractID, on: req)
         
         return query.map(to: SmartContract.self) { c in
-            guard let contract = c else {
-                throw Abort(.notFound)
-            }
+            guard let contract = c else { throw Abort(.notFound) }
             return contract
         }
     }
+    
+    func calculateTransaction(transaction: Int?, req: Request) throws -> Future<Double> {
+        guard let contract = transaction else {
+            throw Abort(.custom(code: 503, reasonPhrase: "The contract is not registered"))
+        }
+        
+        return try SmartContract.find(contract, on: req).map(to: Double.self, { value -> Double in
+            guard let tax = value?.tax else {
+                throw Abort(.preconditionFailed)
+            }
+            return tax
+        })
+    }
+    
 }
