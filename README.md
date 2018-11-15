@@ -24,27 +24,33 @@ A Blockchain API built in Vapor 3
 
 This API registers simple transactions and adds a tax if required.
 
-## GET
+## Blockchain
 
-- **/api/blockchain**: It is used for getting the whole blockchain of transactions
+- **GET: /api/blockchain**: It is used for getting the whole blockchain of transactions
 
-- **/api/blockchain/nodes**: Shows all of the registered nodes that listen to the blockchain
+- **GET: /api/blockchain/nodes**: Shows all of the registered nodes that listen to the blockchain
 
-- **/api/blockchain/resolve**: If one of the registered nodes are not updated, this endpoint will allow to obtain the longest blockchain.
+- **GET: /api/blockchain/resolve**: If one of the registered nodes are not updated, this endpoint will allow to obtain the longest blockchain.
 
+- **POST: /api/blockchain/mine**: Registers transactions under this structure `'{ "from": "Sender", "to": "Reciever", "amount": 1000, "contractId": 1 }'` where contractId is the Smart Contract that will be used to calculate the tax for the transaction.
 
-## POST
+- **POST: /api/blockchain/nodes/register**: Register listening nodes by using this request body `'[{"address": "http://localhost:8080"},{"address": "http://localhost:8090"}]'`.
 
-- **/api/blockchain/mine**: Registers transactions under this structure `'{ "from": "Sender", "to": "Reciever", "amount": 1000, "contractId": 1 }'` where contractId is the Smart Contract that will be used to calculate the tax for the transaction.
+## Smart Contracts
 
-- **/api/blockchain/nodes/register**: Register listening nodes by using this request body `'[{"address": "http://localhost:8080"},{"address": "http://localhost:8090"}]'`.
+- **GET: /api/smartcontracts**: Retrieves the list of smart contracts
+
+- **GET: /api/smartcontracts/<contract_id>**: Retrieves the smart contract with a given identifier, otherwise, it will return an error message.
+
+- **POST: /api/smartcontracts**: Registers a new contract by using this request body `{ "contractId": "example", "name": "Contract example", "tax": 0.2 }`.
 
 
 ## Next steps
 
 - Synchronize correctly the blockchain resolution when two nodes have the same amount of transactions but both are different.
-- Add an authentication method for each endpoint
-- The transactions will send the smart contract and will perform the specified operation.
+- Build a login route for the token generation
+- Use the login generated token for each endpoint
+- Build routes to update smart contracts using the PUT http method.
 
 ## Next level
 
