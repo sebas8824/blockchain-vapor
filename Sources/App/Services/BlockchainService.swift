@@ -14,8 +14,8 @@ class BlockchainService {
         self.blockchain = Blockchain(genesisBlock: Block())
     }
     
-    func getBlockchain() -> Blockchain {
-        return self.blockchain
+    func getBlockchain() -> [Block] {        
+        return self.blockchain.getBlockchain()
     }
     
     func getNextBlock(transactions: [Transaction]) -> Block {
@@ -33,7 +33,7 @@ class BlockchainService {
     }
     
     /* Used to obtain the largest blockchain between the nodes */
-    func resolve(completion: @escaping(Blockchain) -> ()) {
+    func resolve(completion: @escaping([Block]) -> ()) {
         let nodes = self.blockchain.nodes
         
         for node in nodes {
@@ -43,10 +43,10 @@ class BlockchainService {
                     let blockchain = try! JSONDecoder().decode(Blockchain.self, from: data)
                     
                     if self.blockchain.blocks.count > blockchain.blocks.count {
-                        completion(self.blockchain)
+                        completion(self.blockchain.getBlockchain())
                     } else {
                         self.blockchain = blockchain
-                        completion(blockchain)
+                        completion(blockchain.getBlockchain())
                     }
                 }
             }.resume()

@@ -18,7 +18,7 @@ class BlockchainController {
         self.smartContractService = SmartContractService()
     }
 
-    func getBlockchain(req: Request) -> Blockchain {
+    func getBlockchain(req: Request) -> [Block] {
         return self.blockchainService.getBlockchain()
     }
     
@@ -38,8 +38,8 @@ class BlockchainController {
         return self.blockchainService.getNodes()
     }
     
-    func resolve(req: Request) -> Future<Blockchain> {
-        let promise: EventLoopPromise<Blockchain> = req.eventLoop.newPromise()
+    func resolve(req: Request) -> Future<[Block]> {
+        let promise: EventLoopPromise<[Block]> = req.eventLoop.newPromise()
         blockchainService.resolve {
             promise.succeed(result: $0)
         }

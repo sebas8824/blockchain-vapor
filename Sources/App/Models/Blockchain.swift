@@ -11,11 +11,15 @@ import Crypto
 
 final class Blockchain: Content {
     
-    private (set) var blocks: [Block] = [Block]()
+    private (set) var blocks: [Block] = [Block]()    
     private (set) var nodes = [BlockchainNode]()
     
     init(genesisBlock: Block) {
         addBlock(genesisBlock)
+    }
+    
+    func getBlockchain() -> [Block] {
+        return self.blocks
     }
     
     func registerNodes(nodes: [BlockchainNode]) -> [BlockchainNode] {
