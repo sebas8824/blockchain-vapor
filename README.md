@@ -34,7 +34,7 @@ This API registers simple transactions and adds a tax depending of the selected 
 
 - **POST: /api/blockchain/mine**: Registers transactions under this structure `'{ "from": "Sender", "to": "Reciever", "amount": 1000, "contractId": 1 }'` where contractId is the Smart Contract that will be used to calculate the tax for the transaction.
 
-- **POST: /api/blockchain/nodes/register**: Register listening nodes by using this request body `'[{"address": "http://localhost:8080"},{"address": "http://localhost:8090"}]'`. Allowing each host to send their own transactions, sharing the same blockchain.
+- **POST: /api/blockchain/nodes/register**: Register listening nodes by using this request body `'[{"proto": "http", "dns": "localhost", "port": "8080"},{"proto": "http", "dns": "localhost", "port": "8090"}]'`. Allowing each host to send their own transactions, sharing the same blockchain.
 
 ## Smart Contracts
 
