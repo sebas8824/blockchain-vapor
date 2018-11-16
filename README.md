@@ -22,7 +22,7 @@
 # Blockchain Vapor
 A Blockchain API built in Vapor 3
 
-This API registers simple transactions and adds a tax if required.
+This API registers simple transactions and adds a tax depending of the selected Smart Contract.
 
 ## Blockchain
 
