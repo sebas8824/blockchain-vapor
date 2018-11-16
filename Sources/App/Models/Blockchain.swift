@@ -1,9 +1,13 @@
-//
-//  Models.swift
-//  App
-//
-//  Created by Sebastian on 10/14/18.
-//
+/*
+ 
+ Blockchain class: It is the class that has all the information of the transactions and nodes.
+ 
+    blocks: Array of transactions (blocks)
+    node: Array of nodes that listen to the transactions
+ 
+ Created by Sebastian on 10/14/18.
+ 
+ */
 
 import Cocoa
 import Vapor

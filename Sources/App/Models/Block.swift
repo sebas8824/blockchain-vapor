@@ -1,21 +1,15 @@
-//
-//  Block.swift
-//  App
-//
-//  Created by Sebastian on 11/8/18.
-//
-
 /*
-
+ 
  Block class: It is the container of the transaction that will be chained to other blocks with its hashes
  
- index: Transaction index
- previousHash: Hash of the previous transaction
- hash: Hash of the current transaction
- nonce: Unique and arbitraty number of the current transaction
+    index: Transaction index
+    previousHash: Hash of the previous transaction
+    hash: Hash of the current transaction
+    nonce: Unique and arbitraty number of the current transaction
+ 
+ Created by Sebastian on 11/8/18.
 
- */
-
+*/
 
 import Foundation
 import Vapor

@@ -1,9 +1,15 @@
-//
-//  SmartContract.swift
-//  App
-//
-//  Created by Sebastian on 11/9/18.
-//
+/*
+ 
+ SmartContract class: Related to the operations that applies to the given transaction
+ 
+    id: Unique identifier of the contract
+    contractId: Brief and textual identifier of the contract
+    name: Full name of the contract
+    tax: Tax value for the contract
+ 
+ Created by Sebastian on 11/9/18.
+ 
+ */
 
 import Foundation
 import Fluent

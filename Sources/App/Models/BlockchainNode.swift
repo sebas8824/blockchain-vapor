@@ -1,9 +1,15 @@
-//
-//  BlockchainNode.swift
-//  App
-//
-//  Created by Sebastian on 11/8/18.
-//
+/*
+ 
+ BlockchainNode class: It is the class that is responsible of registering the listening nodes for the transactions in the chain.
+ 
+    proto: HTTP protocol
+    dns: DNS of the host
+    port: Port of the host
+    address: Resource address, composed by the already mentioned fields
+ 
+ Created by Sebastian on 11/8/18.
+ 
+ */
 
 import Foundation
 import Vapor
