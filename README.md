@@ -38,6 +38,8 @@ This API registers simple transactions and adds a tax depending of the selected 
 
 ## Smart Contracts
 
+(This is not what a smart contract means, but hey, it has to start with something!)
+
 - **GET: /api/smartcontracts**: Retrieves the list of smart contracts
 
 - **GET: /api/smartcontracts/<contract_id>**: Retrieves the smart contract with a given identifier, otherwise, it will return an error message.
